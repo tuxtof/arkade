@@ -2541,6 +2541,150 @@ func Test_DownloadNovaCli(t *testing.T) {
 
 }
 
+func Test_DownloadOpenshiftClient(t *testing.T) {
+	tools := MakeTools()
+	name := "oc"
+
+	tool := getTool(name, tools)
+
+	tests := []test{
+		{
+			os:      "darwin",
+			arch:    arch64bit,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-client-mac.tar.gz`,
+		},
+		{
+			os:      "darwin",
+			arch:    archDarwinARM64,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-client-mac-arm64.tar.gz`,
+		},
+		{
+			os:      "linux",
+			arch:    arch64bit,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-client-linux.tar.gz`,
+		},
+		{
+			os:      "mingw64_nt-10.0-18362",
+			arch:    arch64bit,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-client-windows.zip`,
+		},
+		{
+			os:      "darwin",
+			arch:    arch64bit,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-client-mac.tar.gz`,
+		},
+		{
+			os:      "darwin",
+			arch:    archDarwinARM64,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-client-mac-arm64.tar.gz`,
+		},
+		{
+			os:      "linux",
+			arch:    arch64bit,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-client-linux.tar.gz`,
+		},
+		{
+			os:      "mingw64_nt-10.0-18362",
+			arch:    arch64bit,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-client-windows.zip`,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.os+" "+tc.arch+" "+tc.version, func(r *testing.T) {
+
+			got, err := tool.GetURL(tc.os, tc.arch, tc.version, false)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if got != tc.url {
+				t.Errorf("want: %s, got: %s", tc.url, got)
+			}
+		})
+	}
+
+}
+
+func Test_DownloadOpenshiftInstaller(t *testing.T) {
+	tools := MakeTools()
+	name := "openshift-install"
+
+	tool := getTool(name, tools)
+
+	tests := []test{
+		{
+			os:      "darwin",
+			arch:    arch64bit,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-install-mac.tar.gz`,
+		},
+		{
+			os:      "darwin",
+			arch:    archDarwinARM64,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-install-mac-arm64.tar.gz`,
+		},
+		{
+			os:      "linux",
+			arch:    arch64bit,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-install-linux.tar.gz`,
+		},
+		{
+			os:      "mingw64_nt-10.0-18362",
+			arch:    arch64bit,
+			version: "4.11.7",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.11.7/openshift-install-windows.zip`,
+		},
+		{
+			os:      "darwin",
+			arch:    arch64bit,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-install-mac.tar.gz`,
+		},
+		{
+			os:      "darwin",
+			arch:    archDarwinARM64,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-install-mac-arm64.tar.gz`,
+		},
+		{
+			os:      "linux",
+			arch:    arch64bit,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-install-linux.tar.gz`,
+		},
+		{
+			os:      "mingw64_nt-10.0-18362",
+			arch:    arch64bit,
+			version: "",
+			url:     `https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/latest/openshift-install-windows.zip`,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.os+" "+tc.arch+" "+tc.version, func(r *testing.T) {
+
+			got, err := tool.GetURL(tc.os, tc.arch, tc.version, false)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if got != tc.url {
+				t.Errorf("want: %s, got: %s", tc.url, got)
+			}
+		})
+	}
+
+}
+
 func Test_DownloadKubetailCli(t *testing.T) {
 	tools := MakeTools()
 	name := "kubetail"
