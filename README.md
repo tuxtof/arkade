@@ -607,6 +607,7 @@ There are 56 apps that you can install on your cluster.
 | docker-compose   | Define and run multi-container applications with Docker.                                                                                  |
 | doctl            | Official command line interface for the DigitalOcean API.                                                                                 |
 | eksctl           | Amazon EKS Kubernetes cluster management                                                                                                  |
+| eksctl-anywhere  | Run Amazon EKS on your own infrastructure                                                                                                 |
 | faas-cli         | Official CLI for OpenFaaS.                                                                                                                |
 | flux             | Continuous Delivery solution for Kubernetes powered by GitOps Toolkit.                                                                    |
 | flyctl           | Command line tools for fly.io services                                                                                                    |
